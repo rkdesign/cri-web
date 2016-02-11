@@ -1,0 +1,18 @@
+make sure node.js (>=0.12.7) is installed on your machine
+make sure Ruby is installed on your machine
+make sure Ruby's SASS compiler is installed on your machine (use command "gem install sass")
+git checkout cri-web
+switch to branch "v.0.1"
+install Gulp node packages globally: "npm install -g gulp"
+go to the directory that you checked out the repository and run "npm install" to obtain the build chain
+go inside the /app directory and run "bower install"
+to begin serving the client locally, go back to the repository root, then enter: "gulp serve"
+"gulp serve" basically enters development mode. It will serve a local copy of the code from your localhost and it will re-build and refresh your browsers if you change the code on disk.
+the build chain we use is called "google web starter kit" and you'll be able to find more info on it online if you are curious. It performs minification, optimization, and auto-reloading of your browsers while developing.
+your preferred browser will open automatically, if not, go to "http://localhost:3000"
+
+to view and change the code, go to the "app" directory inside the repository.
+you'll find most of the logic resides in "app/angular-constructs". 
+
+you'll find the URLs that the app uses inside "app.js" as a constant.
+to build a complete, optimized, and deployable version of the code, exit "gulp serve" by pressing "CTRL+C" a few times. Then, type just "gulp". This will build the files for you and place them into a directory named "dist".
