@@ -1,2 +1,3 @@
-# cri-web
-Web client for Exercise management system
+
+cri-web
+Web client for cri-web  system
