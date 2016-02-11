@@ -1,0 +1,19 @@
+.route-header {
+  margin: 0.2em 0em 0.2em 0em;
+  padding: 0em;
+}
+
+form .requiredFieldLabel:after {
+    content: " *";
+    color: red;
+}
+
+form .CustomValidationError {
+    position: relative;
+    font-size: 0.8em;
+    color: red;
+}
+
+form .CustomValidationError.checkboxradioerror {
+    display: block;
+}
