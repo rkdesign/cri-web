@@ -3,7 +3,16 @@ var app = angular.module('cri-web', [
     'Application',
     'ui.router',
     'Authentication',
-    'facebook-service'
+    'facebook-service',
+    'Home',
+    'Lobby',
+    'Upcoming',
+    'Live',
+    'History',
+    'TransactionHistory',
+    'MyAccount',
+    'ReferFriend',
+    'Wallet'
      
 ]);
 
@@ -55,38 +64,38 @@ app
 				data: {
 					requireLogin: false,
 				}
-			}).state('register', {
-				url: '/register',
-				templateUrl: 'angular-constructs/authentication/html/register.html',
-				controller: 'RegistrationController',
-				data: {
-					requireLogin: false,
-				} 
-			}).state('login', {
-				url: '/login',
-				templateUrl: 'angular-constructs/authentication/html/login.html',
-				controller: 'LoginController',
-				data: {
-					requireLogin: false,
-				}
-			})
+				}).state('register', {
+					url: '/register',
+					templateUrl: 'angular-constructs/authentication/views/register.html',
+					controller: 'RegistrationController',
+					data: {
+						requireLogin: false,
+					} 
+				}).state('login', {
+					url: '/login',
+					templateUrl: 'angular-constructs/authentication/views/login.html',
+					controller: 'LoginController',
+					data: {
+						requireLogin: false,
+					}
+				})
 				.state('changepassword', {
 					url: '/changepassword',
-					templateUrl: 'angular-constructs/authentication/html/changepassword.html',
+					templateUrl: 'angular-constructs/authentication/views/changepassword.html',
 					controller: 'Changepassword',
 					data: {
 						requireLogin: true,
 					}
 				}).state('resetpassword', {
 					url: '/resetpassword',
-					templateUrl: 'angular-constructs/authentication/html/forgotpassword.html',
+					templateUrl: 'angular-constructs/authentication/views/forgotpassword.html',
 					controller: 'ForgotPasswordController',
 					data: {
 						requireLogin: false,
 					}
 				}).state('logout', {
 					url: '/logout',
-					templateUrl: 'angular-constructs/authentication/html/logout.html',
+					templateUrl: 'angular-constructs/authentication/views/logout.html',
 					controller: 'LogoutController',
 					data: {
 						requireLogin: true,
@@ -98,6 +107,69 @@ app
 					data: {
 						requireLogin: true,
 					}
+				}).state('home', {
+					url: '/home',
+					templateUrl: 'angular-constructs/home/views/home.html',
+					controller: 'HomeController',
+					data: {
+						requireLogin: true,
+					} 
+				}).state('lobby', {
+					url: '/lobby',
+					templateUrl: 'angular-constructs/lobby/views/lobby.html',
+					controller: 'LobbyController',
+					data: {
+						requireLogin: true,
+					} 
+				}).state('upcoming', {
+					url: '/upcoming',
+					templateUrl: 'angular-constructs/upcoming/views/upcoming.html',
+					controller: 'UpcomingController',
+					data: {
+						requireLogin: true,
+					} 
+				}).state('live', {
+					url: '/live',
+					templateUrl: 'angular-constructs/live/views/live.html',
+					controller: 'LiveController',
+					data: {
+						requireLogin: true,
+					} 
+				}).state('history', {
+					url: '/history',
+					templateUrl: 'angular-constructs/history/views/history.html',
+					controller: 'HistoryController',
+					data: {
+						requireLogin: true,
+					} 
+				}).state('transactionHistroy', {
+					url: '/transactionHistroy',
+					templateUrl: 'angular-constructs/transactionHistroy/views/transactionhistory.html',
+					controller: 'TransactionHistoryController',
+					data: {
+						requireLogin: true,
+					} 
+				}).state('myaccount', {
+					url: '/myaccount',
+					templateUrl: 'angular-constructs/myAccount/views/myAccount.html',
+					controller: 'MyAccountController',
+					data: {
+						requireLogin: true,
+					} 
+				}).state('referFriend', {
+					url: '/referFriend',
+					templateUrl: 'angular-constructs/referFriend/views/referFriend.html',
+					controller: 'ReferFriendController',
+					data: {
+						requireLogin: true,
+					} 
+				}).state('wallet', {
+					url: '/wallet',
+					templateUrl: 'angular-constructs/wallet/views/wallet.html',
+					controller: 'WalletController',
+					data: {
+						requireLogin: true,
+					} 
 				});
 		}
 	])
@@ -106,7 +178,7 @@ app
 	.run(function ($rootScope, $state) {
 
 		$state.go("/");
-
+		
 		$rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
 			var requireLogin = toState.data.requireLogin;
 			//console.log("Logged in? " + $rootScope.loggedIn);

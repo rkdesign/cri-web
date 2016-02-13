@@ -1,134 +1,122 @@
-<!doctype html>
-<html lang="" ng-app="swwc">
-
+<!DOCTYPE html>
+<html lang="" ng-app="cri-web">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SWWC</title>
-
-    <!-- Essential web libraries (bower) -->
-    <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Angular  -->
-    <script src="bower_components/angular/angular.js"></script>
-    <style>.nav, .pagination, .carousel, .panel-title a {
-        cursor: pointer;
-    }</style>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-
-    <!-- moment.js -->
-    <script src="bower_components/moment/min/moment.min.js"></script>
-    <script src="bower_components/moment-duration-format/lib/moment-duration-format.js"></script>
-
-    <!-- Chart.js -->
-    <script src="bower_components/Chart.js/Chart.min.js"></script>
-    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
-    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css"></link>
-
-    <!-- angular-ui-form-validation.js -->
-    <script src="bower_components/angular-ui-form-validation/dist/angular-ui-form-validation.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-    <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.min.css"></link>
-    <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap-theme.min.css"></link>
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
-    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#3372DF">
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-        <link rel="canonical" href="http://www.example.com/">
-        -->
-    <!-- Page styles -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/custom.css">
-    <link rel="stylesheet" href="styles/components/components.css">
+    <meta name="keywords" content="cri-web" />
+    <meta name="description" content="cri-web" />
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+    <title>Angular Material Kitchen Sink</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- Bower Components -->
+    <link href="bower_components/angular-material/angular-material.css" rel="stylesheet" />
+    <!-- Local Styles-->
+     <link rel="stylesheet" href="styles/main.css"> 
+    <!-- CDN Styles -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
 </head>
+<body  layout="row" ng-controller="ApplicationController" ng-cloak>  
 
-<body ng-controller='ApplicationController'>
-<header class="app-bar promote-layer">
-    <div class="app-bar-container">
-        <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
-        <h1 class="logo">Smart <strong>Weights</strong></h1>
-        <section class="app-bar-actions">
-            <!-- Put App Bar Buttons Here -->
-            <!-- e.g <button><i class="icon icon-star"></i></button> -->
-        </section>
-    </div>
-</header>
-<nav class="navdrawer-container promote-layer">
-    <h4>Menu</h4>
-    <ul>
-        <li ng-show="currentUser"><a ui-sref="workout-statistics">Workout Statistics</a></li>
-        <li ng-show="currentUser"><a ui-sref="workout-history">Workout History</a></li>
-        <li ng-show="currentUser"><a ui-sref="workout-live">Live Workout</a></li>
-        <li ng-show="currentUser"><a ui-sref="account">My Account</a></li>
-        <li ng-show="currentUser"><a ui-sref="admin">Admin</a></li>
-        <li ng-show="!currentUser"><a ui-sref="register">Register</a></li>
-        <li ng-show="!currentUser"><a ui-sref="login">Log In</a></li>
-        <li ng-show="!currentUser"><a ui-sref="resetpassword">Forgot password</a></li>
-        <li ng-show="currentUser"><a ui-sref="logout">Log Out</a></li>
-    </ul>
-</nav>
-<main>
-    <div class="welcome" ng-show="currentUser.username">
-        Welcome, <span class="username">{{currentUser.username}}</span>
-    </div>
-    <div ui-view>
-    </div>
-</main>
-<!-- build:js scripts/main.min.js -->
+    <div layout="column" layout-fill>
+        <header>        
+        <md-sidenav class="show-sm site-sidenav md-sidenav-left md-whiteframe-z2" hide-gt-md  show-md show-sm        
+                md-component-id="left"
+                style="background-color:#4DD0E1;"
+                md-is-locked-open="$mdMedia('gt-sm')"> 
+	         <md-list>
+	            <md-list-item ng-click="go('home','home');menuToggle();">
+	                <i class="material-icons">home</i>HOME</p>
+	            </md-list-item>
+	            <md-divider></md-divider>
+	            <md-list-item ng-repeat="item in menuItems" ng-click="go(item.path,item.name);menuToggle();">
+	                <p>{{item.name | uppercase}}</p>
+	            </md-list-item>
+	        </md-list>
+    	</md-sidenav>
+        
+        <md-toolbar layout="row">
+        	<div class="md-toolbar-tools">
+		     	<md-button class="md-icon-button" hide-gt-md  show-md show-sm aria-label="Show Menu" ng-click="menuToggle()">
+	                  <md-icon md-font-library="material-icons">reorder</md-icon> 	                    	
+	            </md-button>
+		      <md-button class="" aria-label="company Title" ng-click="go('home','home');">
+          			<span>Company Title</span>
+        		</md-button>
+		     
+		      	<md-button class="" ng-click="go('lobby','Lobby');" show-gt-md  hide-md hide-sm hide-xs  aria-label="Lobby">
+          			<span>Lobby</span>
+        		</md-button>
+        		
+        		<md-button class="" ng-click="go('upcoming','Upcoming');" show-gt-md hide-md hide-sm hide-xs aria-label="Upcoming">
+          			<span>Upcoming</span>
+        		</md-button>
+        		
+        		<md-button class="" ng-click="go('live','Live');" show-gt-md  hide-md hide-sm hide-xs aria-label="Live">
+          			<span>Live</span>
+        		</md-button>
+        		
+        		<md-button class="" ng-click="go('history','Histroy');" show-gt-md  hide-md hide-sm hide-xs aria-label="History">
+          			<span>History</span>
+        		</md-button>
+        		 <span flex></span>
+        		 
+        		 <md-button class="" ng-click="go('referFriend','REFER FRIEND');" show-gt-md  hide-md hide-sm hide-xs aria-label="Earn Cash">
+          			<span>Earn Cash
+          			<span>REFER FRIEND</span></span>
+        		</md-button>
+        		
+        		<md-menu-divider></md-menu-divider>
+              <md-menu-item aria-label="My Account">
+                <md-menu>
+                  <md-button ng-click="$mdOpenMenu()">My Account</md-button>
+                  <md-menu-content>
+			            <md-list-item ng-repeat="item in myaccountMenuItems" ng-click="go(item.path,item.name);">
+			                <p>{{item.name | uppercase}}</p>
+			            </md-list-item>                    
+                  </md-menu-content>
+                </md-menu>
+              </md-menu-item>
+              
+              <md-button class="" aria-label="Cash" ng-click="go('wallet','Wallet');">
+          			<span>Cash</span>
+        	  </md-button>
+		    </div>	
+        </md-toolbar>
+        
+          
+        </header>
+        <main class="md-padding" layout="row" flex>
+            <md-content flex id="content">
+                <div class="fade-view" ui-view="">
+                </div>
+            </md-content>
+        </main>
 
-<!-- Services -->
-<script src="angular-constructs/services/WorkoutSummaryProcessor.js"></script>
-<script src="angular-constructs/services/CurrentWorkoutProcessor.js"></script>
+    </div> 
 
-<script src="angular-constructs/services/WorkoutDataService.js"></script>
-
-<!-- Components/Pages -->
-<script src="angular-constructs/auth/Authentication.js"></script>
-<script src="angular-constructs/shared/Application.js"></script>
-<script src="angular-constructs/account/Account.js"></script>
-<script src="angular-constructs/workout-live/WorkoutLive.js"></script>
-<script src="angular-constructs/workout-history/WorkoutHistory.js"></script>
-<script src="angular-constructs/workout-statistics/WorkoutStatistics.js"></script>
-<script src="angular-constructs/workout-faker/WorkoutFaker.js"></script>
-<script src="angular-constructs/admin/Admin.js"></script>
-
-<!-- Common/General App -->
-<script src="angular-constructs/navigation.js"></script>
-<script src="angular-constructs/util.js"></script>
-<script src="angular-constructs/app.js"></script>
-<!-- endbuild -->
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-XXXXX-X', 'auto');
-    ga('send', 'pageview');
-</script>
-<!-- Built with love using Web Starter Kit -->
+    <!-- 3rd party libraries -->
+    <!-- Bower Components -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+    <script src="bower_components/svg-morpheus/compile/minified/svg-morpheus.js"></script>
+    
+    
+    <!-- Load app main script -->
+    <script src="angular-constructs/app.js"></script>
+    <script src="angular-constructs/shared/Application.js"></script>
+    <script src="angular-constructs/authentication/Authentication.js"></script>
+	<script src="angular-constructs/authentication/FacebookIntegration.js"></script>    
+    <script src="angular-constructs/home/HomeController.js"></script>
+    <script src="angular-constructs/lobby/LobbyController.js"></script>
+    <script src="angular-constructs/history/HistoryController.js"></script>    
+    <script src="angular-constructs/live/LiveController.js"></script>    
+    <script src="angular-constructs/upcoming/UpcomingController.js"></script>
+    <script src="angular-constructs/myAccount/MyAccountController.js"></script>
+    <script src="angular-constructs/transactionHistroy/TransactionHistoryController.js"></script>
+    <script src="angular-constructs/referFriend/ReferFriendController.js"></script>   
+    <script src="angular-constructs/wallet/WalletController.js"></script> 
 </body>
-
 </html>
