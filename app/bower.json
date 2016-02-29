@@ -2,7 +2,7 @@
   "name": "cri-web-client",
   "version": "0.0.1",
   "authors": [
-     "Ramakrishna <designerkrishna@gmail.com>"
+    "Ramakrishna <designerkrishna@gmail.com>"
   ],
   "license": "PROPRIETARY",
   "private": true,
@@ -13,21 +13,22 @@
     "test",
     "tests"
   ],
-  "dependencies": {  
-  
-    "angular": "*",
-    "angular-aria":"*",
-    "angular-animate": "*",
-    "angular-material": "*",
-    "angular-messages": "*",
-    "angular-material-icons": "*",
-    "svg-morpheus": "*",    
-    "angular-ui-router": "*",   
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-aria": "^1.5.0",
+    "angular-animate": "^1.5.0",
+    "angular-material": "^1.0.5",
+    "angular-messages": "^1.5.0",
+    "angular-material-icons": "^0.6.0",
+    "svg-morpheus": "^0.1.8",
+    "angular-ui-router": "^0.2.18",
     "angular-route": "*",
-    "angular-mocks": "*",    
-    "moment": "*",
-    "moment-duration-format": "*"
-    
+    "angular-mocks": "*",
+    "moment": "^2.11.2",
+    "moment-duration-format": "*",
+    "requirejs": "*",
+    "angular-touch": "*",
+    "angularAMD": "*"
   },
   "resolutions": {
     "angular": "*"

@@ -1,10 +1,15 @@
 var app = angular.module('cri-web', [
+	'ngAria',
+	'ngMessages', 
+	'ngMdIcons',
 	'ngMaterial',
     'Application',
+    'Menu',
     'ui.router',
     'Authentication',
     'facebook-service',
     'Home',
+    'Admin',
     'Lobby',
     'Upcoming',
     'Live',
@@ -12,8 +17,8 @@ var app = angular.module('cri-web', [
     'TransactionHistory',
     'MyAccount',
     'ReferFriend',
-    'Wallet'
-     
+    'Wallet',
+    'ConfirmPasswordValidation'
 ]);
 
 //Set up constants
@@ -58,134 +63,278 @@ app
 
 			//Set up routes
 			$urlRouterProvider.otherwise('/');
-			$stateProvider
-			$stateProvider.state('/', {
-				url: '/',				
-				data: {
-					requireLogin: false,
-				}
+			
+			$stateProvider.state('default', {				
+				url: '/',
+				views: {			            
+			            'content': {
+			                templateUrl: 'angular-constructs/home/views/index.html',
+			                controller: 'HomeController'			                	
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        }
+							
 				}).state('register', {
 					url: '/register',
-					templateUrl: 'angular-constructs/authentication/views/register.html',
-					controller: 'RegistrationController',
-					data: {
-						requireLogin: false,
-					} 
+					views: {
+			            'content': {			               
+			                controller: 'RegistrationController'
+			            }
+			        }
+					
 				}).state('login', {
 					url: '/login',
-					templateUrl: 'angular-constructs/authentication/views/login.html',
-					controller: 'LoginController',
+					views: {
+			            'content': {
+			            	templateUrl: 'angular-constructs/authentication/views/login.html',
+							controller: 'LoginController'
+			            }
+			        }
+					,
 					data: {
 						requireLogin: false,
 					}
 				})
 				.state('changepassword', {
 					url: '/changepassword',
-					templateUrl: 'angular-constructs/authentication/views/changepassword.html',
-					controller: 'Changepassword',
-					data: {
-						requireLogin: true,
-					}
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+			            	templateUrl: 'angular-constructs/authentication/views/changepassword.html',
+							controller: 'Changepassword'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        }
+					
 				}).state('resetpassword', {
 					url: '/resetpassword',
-					templateUrl: 'angular-constructs/authentication/views/forgotpassword.html',
-					controller: 'ForgotPasswordController',
-					data: {
-						requireLogin: false,
-					}
-				}).state('logout', {
+					views: {			            
+			            'content': {
+							templateUrl: 'angular-constructs/authentication/views/resetpassword.html',
+							controller: 'ResetPasswordController'
+			            }
+			        }
+				}).state('forgotpassword', {
+					url: '/forgotpassword',
+					views: {			            
+			            'content': {
+							templateUrl: 'angular-constructs/authentication/views/forgotpassword.html',
+							controller: 'ForgotPasswordController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        }
+				})
+				.state('logout', {
 					url: '/logout',
-					templateUrl: 'angular-constructs/authentication/views/logout.html',
-					controller: 'LogoutController',
-					data: {
-						requireLogin: true,
-					}
+					views: {			            
+			            'content': {
+			            	templateUrl: 'angular-constructs/authentication/views/logout.html',
+							controller: 'LogoutController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        }					
 				}).state('admin', {
 					url: '/admin',
-					templateUrl: 'angular-constructs/authentication/admin.html',
-					controller: 'AdminController',
-					data: {
-						requireLogin: true,
-					}
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/adminMenu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+			            	templateUrl: 'angular-constructs/admin/views/admin.html',
+							controller: 'AdminController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        }
+					
 				}).state('home', {
 					url: '/home',
-					templateUrl: 'angular-constructs/home/views/home.html',
-					controller: 'HomeController',
-					data: {
-						requireLogin: true,
-					} 
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+							templateUrl: 'angular-constructs/home/views/home.html',
+							controller: 'HomeController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        }
 				}).state('lobby', {
 					url: '/lobby',
-					templateUrl: 'angular-constructs/lobby/views/lobby.html',
-					controller: 'LobbyController',
-					data: {
-						requireLogin: true,
-					} 
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+							templateUrl: 'angular-constructs/lobby/views/lobby.html',
+							controller: 'LobbyController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        } 
 				}).state('upcoming', {
 					url: '/upcoming',
-					templateUrl: 'angular-constructs/upcoming/views/upcoming.html',
-					controller: 'UpcomingController',
-					data: {
-						requireLogin: true,
-					} 
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+			            	templateUrl: 'angular-constructs/upcoming/views/upcoming.html',
+							controller: 'UpcomingController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        } 
 				}).state('live', {
 					url: '/live',
-					templateUrl: 'angular-constructs/live/views/live.html',
-					controller: 'LiveController',
-					data: {
-						requireLogin: true,
-					} 
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+			            	templateUrl: 'angular-constructs/live/views/live.html',
+							controller: 'LiveController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        } 
 				}).state('history', {
 					url: '/history',
-					templateUrl: 'angular-constructs/history/views/history.html',
-					controller: 'HistoryController',
-					data: {
-						requireLogin: true,
-					} 
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+							templateUrl: 'angular-constructs/history/views/history.html',
+							controller: 'HistoryController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        }
 				}).state('transactionHistroy', {
 					url: '/transactionHistroy',
-					templateUrl: 'angular-constructs/transactionHistroy/views/transactionhistory.html',
-					controller: 'TransactionHistoryController',
-					data: {
-						requireLogin: true,
-					} 
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+							templateUrl: 'angular-constructs/transactionHistroy/views/transactionhistory.html',
+							controller: 'TransactionHistoryController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        } 
 				}).state('myaccount', {
 					url: '/myaccount',
-					templateUrl: 'angular-constructs/myAccount/views/myAccount.html',
-					controller: 'MyAccountController',
-					data: {
-						requireLogin: true,
-					} 
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+			            	templateUrl: 'angular-constructs/myAccount/views/myAccount.html',
+							controller: 'MyAccountController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        }
 				}).state('referFriend', {
 					url: '/referFriend',
-					templateUrl: 'angular-constructs/referFriend/views/referFriend.html',
-					controller: 'ReferFriendController',
-					data: {
-						requireLogin: true,
-					} 
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+							templateUrl: 'angular-constructs/referFriend/views/referFriend.html',
+							controller: 'ReferFriendController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        } 
 				}).state('wallet', {
 					url: '/wallet',
-					templateUrl: 'angular-constructs/wallet/views/wallet.html',
-					controller: 'WalletController',
-					data: {
-						requireLogin: true,
-					} 
+					views: {
+			            'header': {
+			                templateUrl: 'angular-constructs/home/views/menu.html',
+			                controller: 'MenuController'
+			            },
+			            'content': {
+							templateUrl: 'angular-constructs/wallet/views/wallet.html',
+							controller: 'WalletController'
+			            },
+			            'footer': {
+			                templateUrl: 'angular-constructs/shared/views/footer.html'
+			            }
+			        } 
 				});
 		}
 	])
 
 //Upon refresh/load of the SPA, send user straight to login page if they are not authenticated, else send them to home
-	.run(function ($rootScope, $state) {
+	.run(function ($rootScope, $state,$location) {
 
-		$state.go("/");
+		$state.go("default");
 		
 		$rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-			var requireLogin = toState.data.requireLogin;
+			//var requireLogin = toState.data.requireLogin;
 			//console.log("Logged in? " + $rootScope.loggedIn);
-			if (requireLogin && $rootScope.loggedIn !== true) {
+			//if (requireLogin && $rootScope.loggedIn !== true) {
 				//event.preventDefault();
 				//$state.go("login");
-			}
+				//$location.path('/') 
+			//}
 		});
 
 	})
+
+app.config(function ($mdThemingProvider) {
+    $mdThemingProvider.theme('docs-dark', 'default')	
+      .primaryPalette('yellow', {
+          'default': '400', // by default use shade 400 from the cyan palette for primary intentions
+          'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
+          'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
+          'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
+      })
+      .dark()
+      .accentPalette('orange',{
+          'default': '200' // use shade 200 for default, and keep all other shades the same
+      })
+      .warnPalette('red')
+    .backgroundPalette('grey');
+});
+
+app.config(function($mdIconProvider) {
+    $mdIconProvider
+      .iconSet('social', 'bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-social.svg', 24)
+      .defaultIconSet('img/icons/sets/core-icons.svg', 24);    
+});
+	

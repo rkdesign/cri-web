@@ -1,4 +1,4 @@
 angular.module('Lobby', [])
-	.controller('LobbyController', function ($scope) {
+	.controller('LobbyController', function ($scope,$window) {
 		
 	});

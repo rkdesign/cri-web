@@ -1,0 +1,72 @@
+ <header>        
+        <md-sidenav class="show-sm site-sidenav md-sidenav-left md-whiteframe-z2" hide-gt-md  show-md show-sm        
+                md-component-id="left"                
+                md-is-locked-open="$mdMedia('gt-sm')"> 
+	         <md-list>
+	            <md-list-item ng-click="go('home','home');menuToggle();">
+	                <i class="material-icons">home</i>HOME</p>
+	            </md-list-item>
+	            <md-divider></md-divider>
+	            <md-list-item ng-repeat="item in menuItems" ng-click="go(item.path,item.name);menuToggle();">
+	                <p>{{item.name | uppercase}}</p>
+	            </md-list-item>
+	        </md-list>
+    	</md-sidenav>
+        
+        <md-toolbar layout="row">
+        	<div class="md-toolbar-tools">
+		     	<md-button class="md-icon-button" hide-gt-md  show-md show-sm aria-label="Show Menu" ng-click="menuToggle()">
+	                  <md-icon md-font-library="material-icons">reorder</md-icon> 	                    	
+	            </md-button>
+		      <md-button class="" aria-label="company Title" ng-click="go('home','home');">
+          			<span>Company Title</span>
+        		</md-button>
+		     
+		      	<md-button class="" ng-click="go('lobby','Lobby');" show-gt-md  hide-md hide-sm hide-xs  aria-label="Lobby">
+          			<span>Lobby</span>
+        		</md-button>
+        		
+        		<md-button class="" ng-click="go('upcoming','Upcoming');" show-gt-md hide-md hide-sm hide-xs aria-label="Upcoming">
+          			<span>Upcoming</span>
+        		</md-button>
+        		
+        		<md-button class="" ng-click="go('live','Live');" show-gt-md  hide-md hide-sm hide-xs aria-label="Live">
+          			<span>Live</span>
+        		</md-button>
+        		
+        		<md-button class="" ng-click="go('history','Histroy');" show-gt-md  hide-md hide-sm hide-xs aria-label="History">
+          			<span>History</span>
+        		</md-button>
+        		 <span flex></span>
+        		 
+        		 <md-button class="" ng-click="go('referFriend','REFER FRIEND');" show-gt-md  hide-md hide-sm hide-xs aria-label="Earn Cash">
+          			<span>Earn Cash
+          			<span>REFER FRIEND</span></span>
+        		</md-button>
+        		
+        		<md-menu-divider></md-menu-divider>
+              <md-menu-item aria-label="My Account">
+                <md-menu>
+                  <md-button ng-click="$mdOpenMenu()">My Account</md-button>
+                  <md-menu-content>
+			            <md-list-item ng-repeat="item in myaccountMenuItems" ng-click="go(item.path,item.name);">
+			                <p>{{item.name | uppercase}}</p>
+			            </md-list-item>                    
+                  </md-menu-content>
+                </md-menu>
+              </md-menu-item>
+              
+              <md-button class="" aria-label="Cash" ng-click="go('wallet','Wallet');">
+          			<span>Cash</span>
+        	  </md-button>
+		    </div>	
+        </md-toolbar>  
+        </header>
+      <!--   <main class="md-padding" layout="row" flex>
+            <md-content flex id="content">
+                <div class="fade-view" ui-view="">
+                </div>
+            </md-content>
+        </main>
+
+ -->

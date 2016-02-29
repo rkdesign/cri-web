@@ -17,3 +17,20 @@ form .CustomValidationError {
 form .CustomValidationError.checkboxradioerror {
     display: block;
 }
+
+/*dialog style*/
+md-dialog.fullscreen-dialog {
+    max-width: 80%;
+    max-height: 80%;
+    width: 80%;
+    height: 80%;
+    border-radius: 0;
+}
+.flex-offset-3, 
+.offset-3{
+	margin-left:3%;
+}
+.flex-offset-2, 
+.offset-2{
+	margin-left:2%;
+}

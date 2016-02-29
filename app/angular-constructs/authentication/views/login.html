@@ -1,1 +1,63 @@
-<h1>Login</h1>
+<md-dialog aria-label=Login  ng-cloak class="fullscreen-dialog">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Login</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="images/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+       <div ng-cloak>  
+  		<md-content class="md-padding" ng-controller="LoginController">  
+			<form name="loginForm">
+					          <md-input-container class="md-block" flex-gt-sm>
+					            <label>Email</label>
+					            <md-icon md-svg-src="images/icons/ic_person_24px.svg" class="email"></md-icon>
+					             <input required type="email" name="userEmail" ng-model="credentials.userEmail"
+						               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+						        <div ng-messages="loginForm.userEmail.$error" role="alert">
+						          	<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+						            	Your email must be between 10 and 100 characters long and look like an e-mail address.
+						          </div>
+						        </div>
+					            
+					          </md-input-container>         
+				        
+					        <md-input-container class="md-block">
+					          <label>Password</label>
+					          <md-icon md-svg-src="images/icons/ic_lock_24px.svg" class="password"></md-icon>
+					          <input required type="password" name="password" ng-model="credentials.password"
+						               minlength="8" maxlength="100" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" />
+						        
+					          <div ng-messages="loginForm.password.$error" role="alert">
+						      		<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+						            	Passwords must be between 8 and 20 characters and least one alphabet and one number and one special character
+						          	</div>
+						       </div>
+					        </md-input-container>	
+					        
+					         <div flex-xs flex="50" flex-offset="3">
+					          <md-checkbox ng-model="remember" aria-label="Rememberme">
+					            Remember me
+					          </md-checkbox>
+					        </div>
+					         
+					         <div  layout="row" flex-offset="3">
+					        	<md-button class="md-raised md-primary"  ng-disabled="loginForm.$invalid" ng-click="login(credentials)">Login</md-button>
+					        </div>
+					        
+			</form>   
+			<div  layout="row" >
+				<span flex></span>  
+				<md-button class="md-raised md-primary" aria-label="Registration" ng-click="showRegistrationPage($event)"><span>Registration</span></md-button>
+        		<md-button class="md-raised md-primary" aria-label="company Title" ng-click="showResetPasswordPage($event)"><span>Reset Password</span></md-button>
+			</div>
+        </md-content> 
+        </div>
+      </div>
+    </md-dialog-content>
+
+</md-dialog>

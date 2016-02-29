@@ -1,1 +1,118 @@
-<h1>Registration</h1>
+<md-dialog aria-label=Registrtion  ng-cloak class="fullscreen-dialog">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Registration</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="images/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+       <div ng-cloak>  
+  		<md-content class="md-padding" ng-controller="RegistrationController">  
+			<form name="RegistrationForm">
+					          <md-input-container class="md-block" flex-gt-sm>
+					            <label>Email</label>
+					            <md-icon md-svg-src="images/icons/ic_person_24px.svg" class="email"></md-icon>           
+					            <input required type="email" name="userEmail" ng-model="credentials.userEmail"
+						               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+						        <div ng-messages="RegistrationForm.userEmail.$error" role="alert">
+						          	<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+						            	Your email must be between 10 and 100 characters long and look like an e-mail address.
+						          </div>
+						        </div>
+					          </md-input-container>         
+				        
+					        <md-input-container class="md-block">
+					          <label for="password">Password</label>
+					          <md-icon md-svg-src="images/icons/ic_lock_24px.svg" class="password"></md-icon>
+					          <input required type="password" name="password" ng-model="credentials.password"
+						               minlength="8" maxlength="100" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" />
+						        
+					          <div ng-messages="RegistrationForm.password.$error" role="alert">
+						      		<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+						            	Passwords must be between 8 and 20 characters and least one alphabet and one number and one special character
+						          	</div>
+						       </div>
+					        </md-input-container>	
+					        
+					        <md-input-container class="md-block">
+					          <label for="confirmpassword" >Confirm Password</label>
+					          <md-icon md-svg-src="images/icons/ic_lock_24px.svg" class="password"></md-icon>
+					          <input required type="password" name="confirmpassword" ng-model="credentials.confirmpassword"  />	
+					          <div ng-messages="RegistrationForm.confirmpassword.$error" role="alert">
+						      		<div ng-message-exp="['required']">
+						            	Please confirm your password.
+						          	</div>
+						       </div>
+					          					        
+						      
+        						 <!-- 
+					          <span ng-messages="RegistrationForm.confirmpassword.$error && RegistrationForm.confirmpassword.$dirty">Please confirm your password.</span>
+  							  <span ng-messages="!RegistrationForm.confirmpassword.$error && RegistrationForm.confirmpassword.$error.noMatch && RegistrationForm.password.$dirty">Passwords do not match.</span>					          
+					         	
+   								 -->   								
+					        </md-input-container>	
+					         <md-input-container class="md-block">        
+          						 <!-- <md-datepicker required ng-model="RegistrationForm.dob" name="dob" md-placeholder="Enter DOB" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" ></md-datepicker>
+          						 <div ng-messages="RegistrationForm.dob.$error" role="alert">
+						      		<div ng-message-exp="['required', 'pattern']">
+						            	Please Select Date of Birth and Enter Valid Date.
+						          	</div>
+						       	</div>	 -->
+						       	
+						       	<md-icon md-svg-src="images/icons/ic_date_range_black_24px.svg" class="password"></md-icon>
+						       	<input type="date" name="dob" ng-model="credentials.dob" />
+       						</md-input-container>	
+					         
+					         <div  layout="row" flex-offset="2">
+					        	<md-button class="md-raised md-primary" ng-disabled="RegistrationForm.$invalid" ng-click="register(credentials)">Register</md-button>
+					        </div>
+			</form>  
+			<div layout="row" >
+				<span flex></span>  
+       			<md-button class="md-raised md-primary" aria-label="Login" ng-click="showLoginPage($event)"><span>Login</span></md-button>       			
+        		<md-button class="md-raised md-primary" aria-label="Reset Password" ng-click="showResetPasswordPage($event)"><span>Reset Password</span></md-button>
+        		</md-content> 
+        	</div>
+        </div>
+      </div>
+    </md-dialog-content>
+
+</md-dialog>
+
+
+<!-- <md-content layout="row">
+  <span flex></span>
+  <md-whiteframe layout="column" flex="50">
+    <div layout="row" layout-align="space-around center">
+      <div>Login with:</div>
+      <md-button>Twitter</md-button>
+      <md-button>Facebook</md-button>
+    </div>
+    <div ng-show="rc.error" class="md-warn">
+      <small>{{ rc.error }}</small>
+    </div>
+    <form layout="column">
+      <md-input-container>
+        <md-icon md-svg-icon="content:ic_mail_24px"></md-icon>
+        <input type="text" ng-model="rc.credentials.email"
+               placeholder="email" aria-label="email"/>
+      </md-input-container>
+      <md-input-container>
+        <md-icon md-svg-icon="action:ic_lock_open_24px"></md-icon>
+        <input type="password" ng-model="rc.credentials.password"
+               placeholder="password" aria-label="password"/>
+      </md-input-container>
+      <md-button class="md-raised md-primary"
+                 ng-click="rc.register()">Create Account
+      </md-button>
+    </form>
+    <div layout="row" layout-align="end center">
+      <a href="/login">Login</a>
+    </div>
+  </md-whiteframe>
+  <span flex></span>
+</md-content> -->

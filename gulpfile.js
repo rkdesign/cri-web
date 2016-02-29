@@ -107,8 +107,8 @@ gulp.task('styles', function () {
 	// For best performance, don't add Sass partials to `gulp.src`
 
 	return gulp.src([
-		'app/styles/**/*.scss',
-		'app/styles/**/*.css'
+		'app/styles/*.scss',
+		'app/styles/*.css'
 	])
 		.pipe($.sass({
 			//style: 'expanded',

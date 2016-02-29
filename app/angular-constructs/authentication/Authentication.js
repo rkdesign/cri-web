@@ -3,7 +3,7 @@
 var angular = angular;
 var module = angular.module('Authentication', []);
 
-module.controller('RegistrationController', function ($scope, $rootScope, $state, AUTH_EVENTS, AuthService, URLS) {
+module.controller('RegistrationController', function ($scope, $rootScope, $state, AUTH_EVENTS, AuthService, URLS, $mdDialog, $mdMedia) {
 	$scope.credentials = {
 			firstName 		: '',
 			lastName 		: '',
@@ -17,6 +17,7 @@ module.controller('RegistrationController', function ($scope, $rootScope, $state
 			mailingAddress	: '',
 			phonenumber		: ''		
 	};
+	
 	
 	$scope.registrationError = false;
 	$scope.registrationSuccess = false;
@@ -51,30 +52,15 @@ module.controller('RegistrationController', function ($scope, $rootScope, $state
 
 });
 
-module.controller('LoginController', function ($scope, $rootScope, $state, AUTH_EVENTS, USER_ROLES, AuthService, $timeout, facebook, SessionService, AdminDataService) {
+module.controller('LoginController', function ($scope, $rootScope, $state, AUTH_EVENTS, USER_ROLES, AuthService, $mdDialog, $mdMedia, SessionService) {
 	 	
 	$scope.credentials = {
 		username: "",
 		password: ""
 	};
+		
 	
-	$scope.loginError = false;	
-	$scope.loginSuccess=false;
-	$scope.authSuccessMessage = "";
-	
-	if($rootScope.registrationSuccess){
-		$scope.authSuccessMessage = AUTH_EVENTS.registraionSuccess;
-		$scope.loginSuccess = true;		
-		$rootScope.registrationSuccess= false;
-	}
-	
-	$scope.$on('$viewContentLoaded', function(event) {
-	      $timeout(function() {	    	
-	    		 $("#username")[0].value ="";	    	 
-	    		 $("#password")[0].value="";	    	  
-	      },100);
-	    });
-	
+		
 	$scope.login = function (credentials) {
 		
 		$scope.authFailureMessage = "";
@@ -85,12 +71,14 @@ module.controller('LoginController', function ($scope, $rootScope, $state, AUTH_
 		 
 		if($scope.loginForm.$valid) {
 			credentials.username = credentials.username.toLowerCase().replace(/\s+/g,'');
-			$scope.loginError = false
-			$scope.callLoginService(credentials);
+			$scope.loginError = false;
+			$state.go("lobby", "lobby");
+			$state.go("admin", "Admin");
+			//$scope.callLoginService(credentials);
 		}
 	};
 	
-	$scope.callLoginService =  function(credentials){
+	/*$scope.callLoginService =  function(credentials){
 		AuthService.login(credentials)
 		.then(function (data) {				
 			$scope.loginError = false;							
@@ -107,7 +95,7 @@ module.controller('LoginController', function ($scope, $rootScope, $state, AUTH_
 			$scope.credentials.password = "";
 			$scope.credentials.username = "";
 		});
-	}
+	}*/
 	
 		$scope.getUserPrivileges = function(user){
 			AdminDataService.getUserPrivileges(user.id)
@@ -204,7 +192,7 @@ module.controller('LoginController', function ($scope, $rootScope, $state, AUTH_
          };	
 });
 
-module.controller('ForgotPasswordController', function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
+module.controller('ResetPasswordController', function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
 	$scope.credentials = {
 		email: ''		
 	};
